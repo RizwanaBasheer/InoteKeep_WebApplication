@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Link} from "react-router-dom";
-import sideImage from ""
+import sideImage from "../Assets/undraw_file_sync_ot38.svg"
 
 const Signup = props => {
     const [credentials, setCredentials] = useState ({
