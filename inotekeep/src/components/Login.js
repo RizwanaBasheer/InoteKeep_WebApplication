@@ -10,7 +10,7 @@ const Login = props => {
     //when user clicks on Submit to login then I will login that user in my website by using the /login route
     const handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch(`http://192.168.1.44:5000/api/auth/login`, {
+        const response = await fetch(`http://localhost:5000/api/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

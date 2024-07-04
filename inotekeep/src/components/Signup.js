@@ -7,7 +7,7 @@ const Signup = props => {
         name: "",
         email: "",
         password: "",
-        cpassword: "",
+        confirmpassword: "",
     });
 
     let navigate = useNavigate();
@@ -16,7 +16,7 @@ const Signup = props => {
     const handleSubmit = async e => {
         e.preventDefault();
         const { name, email, password } = credentials;
-        const response = await fetch(`http://192.168.1.44:5000/api/auth/createuser`, {
+        const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -85,13 +85,12 @@ const Signup = props => {
                         </div>
                         <div className="passwordMatching text my-1">
                           {
-                            credentials.password !== credentials.confirmpassword &&
-                            "⚠️ Password does not match."
+                            (credentials.password === credentials.confirmpassword)?'':"⚠️ Password does not match."
                           }
                         </div>
                       </div>
   
-                      <button disabled={credentials.name.length < 3 || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary btn-block my-2 signup--btn">Sign Up</button>
+                      <button disabled={credentials.name.length < 3 || (credentials.email.length == 0 && credentials.email.includes('@') && credentials.email.includes('.')) || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary btn-block my-2 signup--btn">Sign Up</button>
                       <div id="logIn" className="form-text mt-4 redirect">Already have an account?
                         <Link className='redirect--link' to="/login"> Log in </Link>
                       </div>

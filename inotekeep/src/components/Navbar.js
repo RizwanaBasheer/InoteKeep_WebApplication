@@ -1,11 +1,11 @@
 import React from "react";
-import { Link,useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from "../Assets/inotebook-icon.jpg"
 
 const Navbar = () => {
     // useNavigate hook returns a function which can be used for programmatic navigation.
     let navigate = useNavigate();
-    const location = useLocation();
+    // const location = useLocation();
 
     // useLocation hook returns the location object used by the react-router. This object represents the current URL and is immutable. Whenever the URL changes, the useLocation hook returns a newly updated location object.
     //when user logouts then we will also remove the auth-token from the local storage too

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const mongoURI = "mongodb://0.0.0.0:27017/inotebook"
+const mongoURI = "mongodb+srv://rizwanabasheer067:hNzeKAhi1VEyfUoQ@inote.mbucrtj.mongodb.net/?retryWrites=true&w=majority&appName=INote"
 
 const connectToMongo = () => {
-    mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoose.connect(mongoURI);
 
     mongoose.connection.once('open', () => {
         console.log('Connected to MongoDB');
