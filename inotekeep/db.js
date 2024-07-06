@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = "mongodb+srv://rizwanabasheer067:hNzeKAhi1VEyfUoQ@inote.mbucrtj.mongodb.net/?retryWrites=true&w=majority&appName=INote"
+const mongoURI = process.env.ATLAS_URI;
 
 const connectToMongo = () => {
     mongoose.connect(mongoURI);
