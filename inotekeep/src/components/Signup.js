@@ -90,7 +90,7 @@ const Signup = props => {
                         </div>
                       </div>
   
-                      <button disabled={credentials.name.length < 3 || (credentials.email.length == 0 && credentials.email.includes('@') && credentials.email.includes('.')) || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary btn-block my-2 signup--btn">Sign Up</button>
+                      <button disabled={credentials.name.length < 3 || (credentials.email.length === 0 && credentials.email.includes('@') && credentials.email.includes('.')) || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary btn-block my-2 signup--btn">Sign Up</button>
                       <div id="logIn" className="form-text mt-4 redirect">Already have an account?
                         <Link className='redirect--link' to="/login"> Log in </Link>
                       </div>
