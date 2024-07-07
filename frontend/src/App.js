@@ -7,7 +7,10 @@ import Alert from "./components/Alert";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import './App.css'
+import '.'
 const App = () => {
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
+  console.log(apiUrl)
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
     setAlert({
@@ -28,11 +31,11 @@ const App = () => {
           <Navbar />
           <Alert alert={alert} />
           <Routes>
-            {localStorage.getItem("token") ? <Route exact path="/" element={<Home showAlert={showAlert} />} /> : <Route exact path="/" element={<Login showAlert={showAlert} />} />}
+            {localStorage.getItem("token") ? <Route exact path="/" element={<Home showAlert={showAlert} />} /> : <Route exact path="/" element={<Login showAlert={showAlert} apiUrl={apiUrl}/>} />}
             <Route exact path="/" element={<Home showAlert={showAlert} />} />
             <Route exact path="/" element={<Home showAlert={showAlert} />} />
-            <Route exact path="/login" element={<Login showAlert={showAlert} />} />
-            <Route exact path="/signup" element={<Signup showAlert={showAlert} />} />
+            <Route exact path="/login" element={<Login showAlert={showAlert} apiUrl={apiUrl}/>} />
+            <Route exact path="/signup" element={<Signup showAlert={showAlert} apiUrl={apiUrl}/>} />
           </Routes>
         </Router>
       </NoteState>
