@@ -6,10 +6,13 @@ import AddNote from './AddNote';
 const Notes = () => {
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
+    const [filteredNotes, setFilteredNotes] = useState([]);
+
     useEffect(() => {
         getNotes()
         // eslint-disable-next-line
-    }, [])
+    }, []);
+
     const ref = useRef(null)
     const refClose = useRef(null)
     const [note, setNote] = useState({id: "", etitle: "", edescription: "", etag: ""})
@@ -17,16 +20,30 @@ const Notes = () => {
     const updateNote = (currentNote) => {
         ref.current.click();
         setNote({id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag:currentNote.tag})
-    }
+    };
 
     const handleClick = (e)=>{ 
         editNote(note.id, note.etitle, note.edescription, note.etag)
         refClose.current.click();
-    }
+    };
 
     const onChange = (e)=>{
         setNote({...note, [e.target.name]: e.target.value})
-    }
+    };
+
+    useEffect(() => {
+        // Filter notes based on searchQuery
+        if (props.searchQuery.trim() !== '') {
+            const filtered = notes.filter(note =>
+                note.title.toLowerCase().includes(props.searchQuery.toLowerCase()) ||
+                note.description.toLowerCase().includes(props.searchQuery.toLowerCase()) ||
+                note.tag.toLowerCase().includes(props.searchQuery.toLowerCase())
+            );
+            setFilteredNotes(filtered);
+        } else {
+            setFilteredNotes(notes);
+        }
+    }, [props.searchQuery, notes]);
 
     return (
         <>
@@ -74,12 +91,12 @@ const Notes = () => {
                 <div className="container mx-2"> 
                 {notes.length===0 && 'No notes to display'}
                 </div>
-                {notes.map((note) => {
-                    return <Noteitem key={note._id} updateNote={updateNote} note={note} />
-                })}
+                {filteredNotes.map((note) => (
+                    <Noteitem key={note._id} updateNote={updateNote} note={note} />
+                ))}
             </div>
         </>
-    )
-}
+    );
+};
 
 export default Notes

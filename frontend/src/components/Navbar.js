@@ -27,6 +27,18 @@ const Navbar = () => {
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
+                        {/* Searchbar  */}
+                        {localStorage.getItem("token") ?
+                        <form className="mx-md-5 mx-2 my-2 search-bar" role="search">
+                            <div className="input-group">
+                                <input type="text" className="search form-control" placeholder="Search" value={props.searchQuery}
+                                    onChange={handleSearch} />
+                                <button className={`btn btn-reset d-${props.searchQuery.length > 0 ? 'block' : 'none'}`} type="reset" onClick={() => props.setSearchQuery('')} id="button-addon2">❌</button>
+                                <button className="btn btn-search" type="button" id="button-addon2">🔍</button>
+                            </div>
+                        </form>:<></>
+                        }
+
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             
