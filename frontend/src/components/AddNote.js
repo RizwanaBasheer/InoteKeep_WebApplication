@@ -36,7 +36,7 @@ const AddNote = () => {
                     <input type="text" className="form-control" id="tag" name='tag' value={note.tag} autoComplete='off' onChange={onChange} />
                     <div id="emailHelp" className="form-text">Enter tag to easily categorize notes.</div>
                 </div>
-                <button disabled={note.title.length < 3 || note.description.length < 5 || note.tag.length == 0} type="submit" className="btn btn-primary btn-block my-2 addnote--btn" onClick={handleClick}>Add Note</button>
+                <button disabled={note.title.length < 3 || note.description.length < 5 || note.tag.length === 0} type="submit" className="btn btn-primary btn-block my-2 addnote--btn" onClick={handleClick}>Add Note</button>
             </form>
         </div>
     )
