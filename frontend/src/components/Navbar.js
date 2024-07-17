@@ -2,11 +2,14 @@ import React from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from "../Assets/inotebook-icon.jpg"
 
-const Navbar = () => {
+const Navbar = (props) => {
     // useNavigate hook returns a function which can be used for programmatic navigation.
     let navigate = useNavigate();
-    // const location = useLocation();
 
+    // Searchbar - live search
+    const handleSearch = (event) => {
+        props.setSearchQuery(event.target.value);
+    };
     // useLocation hook returns the location object used by the react-router. This object represents the current URL and is immutable. Whenever the URL changes, the useLocation hook returns a newly updated location object.
     //when user logouts then we will also remove the auth-token from the local storage too
     const handleLogout = () => {
@@ -18,8 +21,8 @@ const Navbar = () => {
     return (
         <>
             <header>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <div className="container-md gx-0">
+                <nav className={`navbar navbar-expand-sm ${props.navBg ? 'fixed-top' : ""} navbar-dark bg-dark`}>
+                    <div className="container ">
                         <Link to="/">
                             <img src={Logo} alt='logo' className='navbar--logo' />
                         </Link>
@@ -41,14 +44,16 @@ const Navbar = () => {
 
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            
+
                             </ul>
                             {!localStorage.getItem("token") ?
-                                <form className="d-flex">
-                                    <Link className="btn btn-outline-primary mx-2" to="/login" role="button">Log In</Link>
-                                    <Link className="btn btn-primary mx-2" to="/signup" role="button">Sign Up</Link>
+                                <form className="d-flex flex-column flex-sm-row ">
+                                    <Link className="btn btn-outline-primary mx-3 mb-2 mb-sm-0 py-3 py-sm-2" to="/login" role="button">Log In</Link>
+                                    <Link className="btn btn-primary mx-3 py-3 py-sm-2" to="/signup" role="button">Sign Up</Link>
                                 </form> :
-                                <button onClick={handleLogout} className="btn btn-primary mx-2">Log Out</button>
+                                <div className="d-flex">
+                                    <button onClick={handleLogout} className="btn btn-dark text-danger mx-2 w-100 text-start">Log Out</button>
+                                </div>
                             }
                         </div>
                     </div>
